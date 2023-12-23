@@ -12,6 +12,7 @@
     "url": "git+https://github.com/satyajitnayk/order-management.git"
   },
   "author": "Satyajit Nayak",
+  "contributors": [ "jyoti (https://github.com/JyotiRanjanSatapathy)","sagar (https://github.com/sagarmohapatra)"],
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/satyajitnayk/order-management/issues"
