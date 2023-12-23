@@ -21,7 +21,7 @@ docker exec -it setup-kafka-kafka-1 bin/bash #setup-kafka-kafka-1 is my kafka co
 docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' <container_id_or_name>
 
 # to check if kafka working in machine
-node config/check_kafka.js
+node setup-kafka/check_kafka.js
 ```
 
 ## run test
