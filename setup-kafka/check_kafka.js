@@ -48,8 +48,7 @@ async function runTest() {
   } catch (error) {
     console.error('Error:', error);
   } finally {
-    // Uncomment the following line if you want to stop the producer after the test
-    // await producer.disconnect();
+    await producer.disconnect();
   }
 }
 

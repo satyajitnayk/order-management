@@ -11,10 +11,10 @@ const userRoutes = (fastify) => {
         const { userId, name, email, createdAt, updatedAt } = user;
         reply.send({ userId, name, email, createdAt, updatedAt });
       } else {
-        reply.send({ error: 'User not found' });
+        reply.send({ message: 'User not found' });
       }
     } catch (err) {
-      reply.send(err);
+      reply.send({message:err});
     }
   });
 };
