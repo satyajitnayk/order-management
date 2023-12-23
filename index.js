@@ -19,7 +19,7 @@ async function runServer() {
     // consume orders
     await kafka.consumeOrders(async (order) => {
       const shipment = await createShipment(order)
-      console.log(shipment)
+      console.log('shipment created successfully\n',shipment)
     })
 
     fastify.get('/health', async (request, reply) => {
@@ -34,6 +34,7 @@ async function runServer() {
         const isPaymentSuccess = await checkPayment({orderId,txnId})
         if(isPaymentSuccess) {
           await kafka.produceOrder(order);
+          console.log('order created successfully\n', {...order, status: "success"})
           reply.send({ success:true, message: `order with orderId ${orderId} placed successfully` });
         } else {
           reply.status(400).send({success:false, message: "payment failed"});
