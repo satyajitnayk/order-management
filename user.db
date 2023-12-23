@@ -1,0 +1,27 @@
+-- Table: public.User
+
+-- DROP TABLE IF EXISTS public."User";
+
+CREATE TABLE IF NOT EXISTS public."User"
+(
+    "userId" integer NOT NULL DEFAULT nextval('"User_userId_seq"'::regclass),
+    name text COLLATE pg_catalog."default",
+    email text COLLATE pg_catalog."default" NOT NULL,
+    password text COLLATE pg_catalog."default" NOT NULL,
+    "createdAt" timestamp(3) without time zone NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "updatedAt" timestamp(3) without time zone,
+    CONSTRAINT "User_pkey" PRIMARY KEY ("userId")
+)
+
+TABLESPACE pg_default;
+
+ALTER TABLE IF EXISTS public."User"
+    OWNER to postgres;
+-- Index: User_email_key
+
+-- DROP INDEX IF EXISTS public."User_email_key";
+
+CREATE UNIQUE INDEX IF NOT EXISTS "User_email_key"
+    ON public."User" USING btree
+    (email COLLATE pg_catalog."default" ASC NULLS LAST)
+    TABLESPACE pg_default;

@@ -1,0 +1,22 @@
+on:
+  pull_request:
+    branches: ['**']
+    types: [synchronize, opened, reopened, ready_for_review]
+  push:
+    branches: [main]
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    if: github.event.pull_request.draft == false  # run this job only if the PR is not in a draft state
+    strategy:
+      matrix:
+        node: [ '18' ]
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node }}
+      - run: npm i
+      - name: test
+        run: npm run test

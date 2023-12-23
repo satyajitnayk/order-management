@@ -1,0 +1,29 @@
+{
+  "name": "order-management",
+  "version": "1.0.0",
+  "description": "A queue service to manage order using Fastify framework",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest --config",
+    "start": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/satyajitnayk/order-management.git"
+  },
+  "author": "Satyajit Nayak",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/satyajitnayk/order-management/issues"
+  },
+  "homepage": "https://github.com/satyajitnayk/order-management#readme",
+  "dependencies": {
+    "@fastify/postgres": "^5.2.2",
+    "dotenv": "^16.3.1",
+    "fastify": "^4.25.1"
+  },
+  "devDependencies": {
+    "jest": "^29.7.0",
+    "supertest": "^6.3.3"
+  }
+}
