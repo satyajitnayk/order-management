@@ -2,6 +2,7 @@ const { setupDatabase } = require('./config/db.js');
 const { userRoutes } = require('./routes/users.js');
 const { kafka } = require('./config');
 const {checkPayment} = require("./config/payment");
+const {createShipment} = require("./services/shipment");
 
 const fastify = require('fastify')({
   logger: true,
@@ -14,6 +15,12 @@ async function runServer() {
 
     // Initialize Kafka
     await kafka.initializeKafka();
+
+    // consume orders
+    await kafka.consumeOrders(async (order) => {
+      const shipment = await createShipment(order)
+      console.log(shipment)
+    })
 
     fastify.get('/health', async (request, reply) => {
       reply.type('application/json').code(200);

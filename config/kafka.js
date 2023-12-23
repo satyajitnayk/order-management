@@ -25,9 +25,11 @@ const produceOrder = async (order) => {
 
 const consumeOrders = async (processOrderCallback) => {
   await kafkaConsumer.run({
-    eachMessage: async ({ message }) => {
+    eachMessage: async ({ message, partition }) => {
       const order = JSON.parse(message.value.toString());
       await processOrderCallback(order);
+      // Commit the offset to mark the message as processed
+      await kafkaConsumer.commitOffsets([{ topic: 'order-queue-topic', partition, offset: message.offset }]);
     },
   });
 };
